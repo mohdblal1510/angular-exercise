@@ -1,0 +1,37 @@
+<div *ngIf="company" class="container">
+    <h2>{{ company?.title }}</h2>
+    <span>Company Number: </span>
+    <span class="fw-bold">{{ company?.company_number }}</span>
+    <div class="mt-3">
+        <div>Registered office address</div>
+        <div class="fw-bold">{{ company?.address_snippet }}</div>
+    </div>
+    <div class="mt-3">
+        <div>
+            Company Status
+        </div>
+        <div class="fw-bold">
+            {{company?.company_status}}
+        </div>
+    </div>
+    <div class="mt-3">
+        <div>
+            Company Type
+        </div>
+        <div class="fw-bold">
+            {{company?.company_type}}
+        </div>
+    </div>
+    <div class="mt-3">
+        <div>
+            Incorporat On
+        </div>
+        <div class="fw-bold">
+            {{company?.date_of_creation}}
+        </div>
+    </div>
+    <div class="mt-3">
+        <a (click)="listOfficers(company.company_number)" class="ompany-title">List Officers</a>
+      </div>
+    <button class="btn btn-primary mt-3" (click)="goBack()">Back to Results</button>
+  </div>

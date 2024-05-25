@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center" *ngIf="displayedCompanies">
+    <button class="btn btn-secondary mt-3 text-center" (click)="onSearchAgain()">Search Again</button>
+</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-100" *ngIf="!displayedCompanies">
+    <form  class="text-center" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="form-group">
+            <input type="text" class="form-control form-control-lg" formControlName="searchTerm" placeholder="Enter search term" />
+            <button  class="btn btn-primary btn-lg mt-3" type="submit" [disabled]="searchForm.invalid">Search</button>
+            <div *ngIf="searchTermControl?.invalid && (searchTermControl?.dirty || searchTermControl?.touched)"  class="text-danger mt-2">
+                <div *ngIf="searchTermControl?.errors?.['required']">Search term is required.</div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-search-results 
+  [companies]="displayedCompanies" 
+  [currentPage]="currentPage" 
+  [totalPages]="totalPages()" 
+  (pageChange)="onPageChange($event)">
+</app-search-results>
+<div *ngIf="isLoading" class="text-center mt-3">
+    Loading...
+</div>
+<div *ngIf="error" class="text-center text-danger mt-3">
+    Error loading companies.
+</div>
